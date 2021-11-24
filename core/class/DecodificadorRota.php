@@ -44,7 +44,7 @@ class DecodificadorRota
 
     public function obtemAcao()
     {
-        $this->montaNomeDaAcao();
+        return $this->montaNomeDaAcao();
     }
 
     private function montaNomeDaAcao()
