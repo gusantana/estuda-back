@@ -4,6 +4,7 @@ namespace core;
 
 require CLASSE_CORE_DIRETORIO . "DecodificadorRota.php";
 require CLASSE_CORE_DIRETORIO . 'Requisicao.php';
+require CLASSE_CORE_DIRETORIO . 'DespachadorRequisicao.php';
 
 class Server
 {
@@ -13,12 +14,8 @@ class Server
     public function __construct()
     {
         $this->requisicao = new Requisicao();
-    }
-
-    public function padraoDeRota($controladorPadrao, $acaoPadrao = "index")
-    {
-        $this->controladorPadrao = $controladorPadrao;
-        $this->acaoPadrao = $acaoPadrao;
+        $this->controladorPadrao = "Aluno";
+        $this->acaoPadrao = "index";
     }
 
     public function trataRequisicao()

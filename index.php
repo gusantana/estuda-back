@@ -22,7 +22,5 @@ define('SYS_DIR', basename(CORE_DIRETORIO));
 ini_set("allow_url_fopen", true);
 
 require (CORE_DIRETORIO.'Server.php');
-
 $server = new \core\Server();
-$server->padraoDeRota("Aluno");
 $server->trataRequisicao();
