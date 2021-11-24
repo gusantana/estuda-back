@@ -10,9 +10,9 @@ class DespachadorRequisicao
     {
         require(DIRETORIO_CONTROLADOR . DIRECTORY_SEPARATOR . $nomeDoControlador . '.php');
         $reflector = new \ReflectionClass($nomeDoControlador);
-        $controlador = $reflector->newInstanceArgs(array());
+        $controlador = $reflector->newInstanceArgs();
         if (method_exists($controlador, $acao)) {
-            $controlador->{$acao}(new Requisicao());
+            $controlador->{$acao}();
         }
         else {
             http_response_code(404);
