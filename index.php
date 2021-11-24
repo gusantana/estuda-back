@@ -13,9 +13,9 @@ define('INTERFACE_CORE_DIRETORIO', dirname(__FILE__) . DIRECTORY_SEPARATOR . 'in
 
 define('SISTEMA_DIRETORIO', dirname(__FILE__) . DIRECTORY_SEPARATOR);
 
-define('CONTROLADOR_DIRETORIO', dirname(__FILE__) . DIRECTORY_SEPARATOR . CONTROLLER_PASTA);
-define('MODEL_DIRETORIO', dirname(__FILE__) . DIRECTORY_SEPARATOR . MODELS_PASTA);
-define('REPOSITORIO_DIRETORIO', dirname(__FILE__) . DIRECTORY_SEPARATOR . REPOSITORIO_PASTA);
+define('DIRETORIO_CONTROLADOR', dirname(__FILE__) . DIRECTORY_SEPARATOR . CONTROLLER_PASTA);
+define('DIRETORIO_MODEL', dirname(__FILE__) . DIRECTORY_SEPARATOR . MODELS_PASTA);
+define('DIRETORIO_REPOSITORIO', dirname(__FILE__) . DIRECTORY_SEPARATOR . REPOSITORIO_PASTA);
 
 define('SYS_DIR', basename(CORE_DIRETORIO));
 
@@ -24,4 +24,5 @@ ini_set("allow_url_fopen", true);
 require (CORE_DIRETORIO.'Server.php');
 
 $server = new \core\Server();
+$server->padraoDeRota("Aluno");
 $server->trataRequisicao();
