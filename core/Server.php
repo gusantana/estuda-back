@@ -7,6 +7,14 @@ require CLASSE_CORE_DIRETORIO . 'Requisicao.php';
 
 class Server
 {
+    private $requisicao;
+    private $decodificadorDeRota;
+
+    public function __construct()
+    {
+        $this->requisicao = new Requisicao();
+    }
+
     public function padraoDeRota($controladorPadrao, $acaoPadrao = "index")
     {
         $this->controladorPadrao = $controladorPadrao;
@@ -15,8 +23,10 @@ class Server
 
     public function trataRequisicao()
     {
-        $requisicao = new Requisicao();
-        $url = $requisicao->getUrl();
-        return new DecodificadorRota();
+        $this->tentaObterControladorEAcao();
+    }
+
+    private function tentaObterControladorEAcao()
+    {
     }
 }
