@@ -15,6 +15,11 @@ class Requisicao
         }
     }
 
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
     public function get()
     {
         return $_GET;
@@ -26,10 +31,5 @@ class Requisicao
             return json_decode(file_get_contents('php://input'), true);
         }
         return $_POST;
-    }
-
-    public function getUrl() 
-    {
-        return $this->url;
     }
 }
