@@ -5,17 +5,21 @@ namespace core;
 class DecodificadorRota
 {
     private $umaUrl;
+    private $rotaPadrao;
+    private $acaoPadrao;
     private $controlador;
 
-    public function __construct($umaUrl = "/Aluno/")
+    public function __construct($umaUrl, $rotaPadrao, $acaoPadrao)
     {
         $this->umaUrl = $umaUrl;
+        $this->rotaPadrao = $rotaPadrao;
+        $this->acaoPadrao = $acaoPadrao;
     }
 
     public function obtemControlador()
     {
         $this->montaNomeDoControlador();
-        if ($this->existeControladorNoSistema) {
+        if ($this->existeControladorNoSistema()) {
             return $this->controlador;
         }
         throw new \Exception("Rota Inexistente");
@@ -24,6 +28,11 @@ class DecodificadorRota
     private function montaNomeDoControlador()
     {
         $rota = explode('/', $this->umaUrl);
+        if (empty($rota[1])) {
+            $this->controlador = $this->rotaPadrao . 'Controller';
+            return;
+        }
+
         $this->controlador = $rota[1] . 'Controller';
     }
 
@@ -33,7 +42,19 @@ class DecodificadorRota
         return $controladorExiste;
     }
 
-    function obtemMetodo()
+    public function obtemAcao()
     {
+        $this->montaNomeDaAcao();
+    }
+
+    private function montaNomeDaAcao()
+    {
+        $acao = $this->acaoPadrao;
+        $rota = explode('/', $this->umaUrl);
+
+        if (!empty($rota[2])) {
+            $acao = $rota[2];
+        }
+        return $acao;
     }
 }
