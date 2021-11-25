@@ -1,8 +1,12 @@
 <?php
 
 include_once(CLASSE_CORE_DIRETORIO . "Controller.php");
+include_once(DIRETORIO_REPOSITORIO . "TurmaRepositorio.php");
 
-class TurmaController extends \core\Controller
+use repository\TurmaRepositorio;
+use \core\Controller;
+
+class TurmaController extends Controller
 {
     public function __construct()
     {
@@ -11,6 +15,10 @@ class TurmaController extends \core\Controller
 
     public function index()
     {
+        $repositorio = new TurmaRepositorio();
+        $id = $this->requisicao->get()['id'];
 
+        $resultado = $repositorio->getPorId($id);
+        return json_encode($resultado);
     }
 }
