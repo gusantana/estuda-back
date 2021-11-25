@@ -1,18 +1,15 @@
 <?php
-
 namespace models;
 
-class Aluno
+include_once(DIRETORIO_MODEL . 'Model.php');
+
+class Aluno extends Model
 {
     const tabela = 'aluno';
 
     public function __construct($dados = [])
     {
-        foreach ($dados as $coluna => $valor) {
-            if (property_exists($this, $coluna)) {
-                $this->{$coluna} = $valor;
-            }
-        }
+        parent::__construct($dados);
     }
 
     public $id;
