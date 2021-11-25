@@ -2,7 +2,12 @@
 
 namespace repository;
 
-use database\GerenciadorConexao;
+
+include(CORE_DIRETORIO . 'database' . DIRECTORY_SEPARATOR . 'GerenciadorConexao.php');
+
+
+
+use core\GerenciadorConexao;
 
 class BaseRepositorio
 {
