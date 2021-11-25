@@ -1,7 +1,7 @@
 <?php
 
-require(CLASSE_CORE_DIRETORIO . "Controller.php");
-require(DIRETORIO_REPOSITORIO . "EscolaRepositorio.php");
+include_once(CLASSE_CORE_DIRETORIO . "Controller.php");
+include_once(DIRETORIO_REPOSITORIO . "EscolaRepositorio.php");
        
 use repository\EscolaRepositorio;
 
