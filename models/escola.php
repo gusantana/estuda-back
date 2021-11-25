@@ -18,7 +18,11 @@ class Escola extends Model
     public $endereco;
 
 
-    public $data_cadastro;
-    public $data_alterado;
-    public $data_excluido;
+    private $data_cadastro;
+    private $data_alterado;
+    private $data_excluido;
+
+    protected $colunasObrigatorias = [
+        'nome',
+    ];
 }

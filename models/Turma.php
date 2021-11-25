@@ -24,4 +24,10 @@ class Turma extends Model
     private $data_cadastro;
     private $data_alterado;
     private $data_excluido;
+
+    protected $colunasObrigatorias = [
+        'id_escola',
+        'nivel_ensino',
+        'serie'
+    ];
 }
