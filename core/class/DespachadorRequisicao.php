@@ -12,7 +12,10 @@ class DespachadorRequisicao
         $reflector = new \ReflectionClass($nomeDoControlador);
         $controlador = $reflector->newInstanceArgs();
         if (method_exists($controlador, $acao)) {
-            $controlador->{$acao}();
+            ob_start();
+            $resposta = $controlador->{$acao}();
+            print($resposta);
+            ob_flush();
         }
         else {
             http_response_code(404);
