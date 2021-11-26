@@ -9,6 +9,7 @@ class GerenciadorConexao
     private $dsn;
     private $username;
     private $password;
+    private static $conexao;
 
     public function __construct()
     {
@@ -22,8 +23,11 @@ class GerenciadorConexao
 
     public function obtemConexao()
     {
-        $this->montaStringDeConexao();
-        return new \PDO($this->dsn, $this->username, $this->password);
+        if (self::$conexao == null){
+            $this->montaStringDeConexao();
+            self::$conexao = new \PDO($this->dsn, $this->username, $this->password);
+        }
+        return self::$conexao;
     }
 
     private function montaStringDeConexao()
