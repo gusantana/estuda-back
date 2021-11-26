@@ -24,7 +24,7 @@ class AlunoController extends Controller
         return json_encode($resultado);
     }
 
-    public function post()
+    public function salvar()
     {
         $modelo = new Aluno($this->requisicao->post());
         if ($modelo->validar()){
