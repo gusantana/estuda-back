@@ -17,7 +17,6 @@ class Turma extends Model
     public $id_escola;
     public $ano;
     public $nivel_ensino;
-    public $data_nascimento;
     public $serie;
     public $turno;
 
