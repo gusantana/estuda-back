@@ -13,6 +13,10 @@ class Server
 
     public function __construct()
     {
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Headers: *");
+        header('Access-Control-Allow-Credentials: true');
+
         $this->requisicao = new Requisicao();
         $this->controladorPadrao = "Aluno";
         $this->acaoPadrao = "index";
