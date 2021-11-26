@@ -32,4 +32,17 @@ class AlunoController extends Controller
             $repositorio->salvar($modelo);
         }
     }
+
+    public function excluir()
+    {
+        $modelo = new Aluno($this->requisicao->post());
+        try {
+            $repositorio = new AlunoRepositorio();
+            return $repositorio->excluir($modelo);
+        }
+        catch(\Exception $ex)
+        {
+            return $ex->getMessage();
+        }
+    }
 }

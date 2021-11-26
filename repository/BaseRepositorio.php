@@ -41,8 +41,27 @@ class BaseRepositorio
         return $resultado[0] ?? [];
     }
 
+    public function excluir($entidade)
+    {
+        if (!empty((int) $entidade->id)) {
+            $sql = 'UPDATE ' . $entidade::tabela . ' set data_excluido = CURRENT_TIMESTAMP';
+            $where = " WHERE id = :id ";
+            $sql .= $where;
 
-    public function salvar($entidade) {
+            $parametros = [];
+            $parametros[':id'] = $entidade->id;
+
+            $statement = $this->conexao->prepare($sql);
+            $statement->execute($parametros);
+
+            return $entidade->id;
+        }
+        throw new \Exception ("Não foi possível excluir o registro");
+    }
+
+
+    public function salvar($entidade)
+    {
         if (empty((int) $entidade->id)) {
             return $this->insert($entidade);
         }
@@ -63,7 +82,7 @@ class BaseRepositorio
         $sql .= implode(", ", $colunasDaEntidade);
         $sql .= ') VALUES (';
 
-        
+
         foreach ($camposDaEntidade as $coluna => $valor) {
             $sql .= "{$separador}:{$coluna}";
             $parametros[":{$coluna}"] = $valor;

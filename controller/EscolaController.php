@@ -32,5 +32,16 @@ class EscolaController extends Controller
             $repositorio->salvar($modelo);
         }
     }
+
+    public function excluir()
+    {
+        $modelo = new Escola($this->requisicao->post());
+        try {
+            $repositorio = new EscolaRepositorio();
+            return $repositorio->excluir($modelo);
+        } catch (\Exception $ex) {
+            return $ex->getMessage();
+        }
+    }
 }
   

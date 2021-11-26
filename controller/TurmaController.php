@@ -32,4 +32,15 @@ class TurmaController extends Controller
             $repositorio->salvar($modelo);
         }
     }
+
+    public function excluir()
+    {
+        $modelo = new Turma($this->requisicao->post());
+        try {
+            $repositorio = new TurmaRepositorio();
+            return $repositorio->excluir($modelo);
+        } catch (\Exception $ex) {
+            return $ex->getMessage();
+        }
+    }
 }
