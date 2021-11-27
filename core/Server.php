@@ -2,21 +2,19 @@
 
 namespace core;
 
-require CLASSE_CORE_DIRETORIO . "DecodificadorRota.php";
-require CLASSE_CORE_DIRETORIO . 'Requisicao.php';
-require CLASSE_CORE_DIRETORIO . 'DespachadorRequisicao.php';
+require_once CLASSE_CORE_DIRETORIO . "BaseServer.php";
+require_once CLASSE_CORE_DIRETORIO . "DecodificadorRota.php";
+require_once CLASSE_CORE_DIRETORIO . 'Requisicao.php';
+require_once CLASSE_CORE_DIRETORIO . 'DespachadorRequisicao.php';
 
-class Server
+class Server extends BaseServer
 {
     private $requisicao;
     private $decodificadorDeRota;
 
     public function __construct()
     {
-        header("Access-Control-Allow-Origin: *");
-        header("Access-Control-Allow-Headers: *");
-        header('Access-Control-Allow-Credentials: true');
-
+        parent::__construct();
         $this->requisicao = new Requisicao();
         $this->controladorPadrao = "Aluno";
         $this->acaoPadrao = "index";
