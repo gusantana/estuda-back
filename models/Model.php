@@ -6,6 +6,7 @@ class Model
 {
     protected $colunasObrigatorias = [];
     private $camposFaltantes = [];
+    protected $chavePrimaria = 'id';
 
     public function __construct($dados = [])
     {
@@ -14,6 +15,7 @@ class Model
                 $this->{$coluna} = $valor;
             }
         }
+        $this->{$this->chavePrimaria} = (int) $this->{$this->chavePrimaria};
     }
 
     public function validar()
