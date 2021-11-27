@@ -18,6 +18,30 @@ class BaseRepositorio
         $this->model = $modelo;
     }
 
+    public function getAtivos()
+    {
+        $camposDaEntidade = get_object_vars($this->model);
+        $colunasDaEntidade = array_keys($camposDaEntidade);
+
+        $sql = 'SELECT ';
+        $sql .= implode(", ", $colunasDaEntidade);
+        $sql .= ' FROM '. $this->model::tabela;
+        
+        
+        $where = ' WHERE data_excluido IS NULL';
+        $sql .= $where;
+
+        $statement = $this->conexao->prepare($sql);
+        $statement->execute([]);
+
+        $resultado = [];
+        while ($tupla = $statement->fetch(\PDO::FETCH_ASSOC)) {
+            $resultado[] = $tupla;
+        }
+
+        return $resultado ?? [];
+    }
+
     public function getPorId($id)
     {
         if (!isset($id)) {
