@@ -50,4 +50,11 @@ class EscolaController extends Controller
             return $ex->getMessage();
         }
     }
+
+    public function getComQuantidadeAlunos()
+    {
+        $repositorio = new EscolaRepositorio();
+        $resultado = $repositorio->getEscolasComTotalDeAlunos();
+        return json_encode($resultado);
+    }
 }
