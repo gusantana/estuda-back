@@ -38,9 +38,13 @@ where a.id not in (
 
     public function getAlunosDaTurma($id_turma)
     {
-        $sql = "SELECT a.* FROM aluno a 
-INNER JOIN aluno_turma at1 on at1.id_aluno = a.id 
-where at1.id_turma = :id_turma and at1.data_excluido is null";
+        $sql = "SELECT at1.*, a.nome, a.email, a.genero FROM aluno a 
+            INNER JOIN aluno_turma at1 on at1.id_aluno = a.id 
+            where at1.id_turma = :id_turma 
+            and 
+            at1.data_excluido is null
+            and
+            a.data_excluido is null";
 
         $parametros = [];
         $parametros[':id_turma'] = $id_turma;
