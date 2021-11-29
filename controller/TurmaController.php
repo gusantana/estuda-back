@@ -24,13 +24,22 @@ class TurmaController extends Controller
         return json_encode($resultado);
     }
 
+    public function get()
+    {
+        $repositorio = new TurmaRepositorio();
+        $id = $this->requisicao->get()['id'];
+        $resultado = $repositorio->getPorId($id);
+        return json_encode($resultado);
+    }
+
     public function salvar()
     {
         $modelo = new Turma($this->requisicao->post());
         if ($modelo->validar()) {
             $repositorio = new TurmaRepositorio();
-            $repositorio->salvar($modelo);
+            $modelo = $repositorio->salvar($modelo);
         }
+        return json_encode($modelo);
     }
 
     public function excluir()
@@ -42,5 +51,12 @@ class TurmaController extends Controller
         } catch (\Exception $ex) {
             return $ex->getMessage();
         }
+    }
+
+    public function getPorEscola()
+    {
+        $repositorio = new TurmaRepositorio();
+        $resultado = $repositorio->getPorFiltros($this->requisicao->get());
+        return json_encode($resultado);
     }
 }
