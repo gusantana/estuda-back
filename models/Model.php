@@ -26,7 +26,7 @@ class Model
             return true;
         }
         
-        http_response_code(400);
+        http_response_code(412);
         throw new \Exception('campos necessários: ' . implode(', ',$this->camposFaltantes));
     }
 
