@@ -25,6 +25,8 @@ class EscolaRepositorio extends BaseRepositorio
 	            aluno_turma.data_excluido is null
                 and
                 aluno.data_excluido is null
+                and
+                turma.data_excluido IS NULL
             ) as quant_alunos
         FROM ". $this->model::tabela . " es
         WHERE es.data_excluido IS null";
