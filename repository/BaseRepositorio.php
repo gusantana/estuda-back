@@ -65,6 +65,37 @@ class BaseRepositorio
         return $resultado[0] ?? [];
     }
 
+    public function getPorFiltros($filtros = [])
+    {
+        $parametros = [];
+        $where = '';
+        $sql = 'SELECT * FROM ' . $this->model::tabela;
+
+        if (!empty($filtros)) {
+            $where = " WHERE";
+            $separador = '';
+
+            foreach ($filtros as $coluna => $valor) {
+                $where .= " {$separador} {$coluna} = :{$coluna}";
+                $parametros[":{$coluna}"] = $valor;
+                $separador = "AND";
+            }
+
+            $where .= " {$separador} data_excluido IS NULL";
+        }
+        $sql .= $where;
+
+        $statement = $this->conexao->prepare($sql);
+        $statement->execute($parametros);
+
+        $resultado = [];
+        while ($tupla = $statement->fetch(\PDO::FETCH_ASSOC)) {
+            $resultado[] = $tupla;
+        }
+
+        return $resultado ?? [];
+    }
+
     public function excluir($entidade)
     {
         if (!empty((int) $entidade->id)) {
