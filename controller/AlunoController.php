@@ -18,8 +18,14 @@ class AlunoController extends Controller
     public function index()
     {
         $repositorio = new AlunoRepositorio();
-        $id = $this->requisicao->get()['id'];
+        $resultado = $repositorio->getAtivos();
+        return json_encode($resultado);
+    }
 
+    public function get()
+    {
+        $repositorio = new AlunoRepositorio();
+        $id = $this->requisicao->get()['id'];
         $resultado = $repositorio->getPorId($id);
         return json_encode($resultado);
     }
@@ -29,8 +35,9 @@ class AlunoController extends Controller
         $modelo = new Aluno($this->requisicao->post());
         if ($modelo->validar()){
             $repositorio = new AlunoRepositorio();
-            $repositorio->salvar($modelo);
+            $modelo = $repositorio->salvar($modelo);
         }
+        return json_encode($modelo);
     }
 
     public function excluir()
